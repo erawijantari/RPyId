@@ -16,7 +16,7 @@ Time: 02:00 pm - 05: 00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes were placed at `./Notes/20191109_RPyID1st` contains the introductions and Jupyter notebook of live coding.
+Notes were placed at `./Notes/20191109_RPyID1st` contains the introductions and notebook of live coding.
 Source of hands-on: `http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html`
 
 ## 2ndMeeting-Let's make it functional part 1: R
