@@ -1,7 +1,8 @@
 ---
 title: "Let's make it functional part 1: R series"
-output: html_document
+output: github_document
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
