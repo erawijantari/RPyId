@@ -3,8 +3,11 @@ Let’s make it functional part 1: R series
 
 **2ndMeeting - Saturday, November 23, 2019**
 
-**Tutors and Organizers:** - Pande Putu Erawijantati - Felix Salim - Mia
-Fitria Utami
+**Tutors and Organizers:**
+
+  - Pande Putu Erawijantati
+  - Felix Salim
+  - Mia Fitria Utami
 
 ## Content:
 
@@ -299,14 +302,15 @@ for (f in filenames) {
     ## [1] "data/inflammation-03.csv"
 
 ![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-13-7.png)<!-- -->![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-13-8.png)<!-- -->![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-13-9.png)<!-- -->
-\> In this lesson we saw how to use a simple for loop to repeat an
-operation. As you progress with R, you will learn that there are
-multiple ways to accomplish this. Sometimes the choice of one method
-over another is more a matter of personal style, but other times it can
-have consequences for the speed of your code. For instruction on best
-practices, see this [software carpentry supplementary
-lesson](http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/)
-that demonstrates how to properly repeat operations in R.
+
+> In this lesson we saw how to use a simple for loop to repeat an
+> operation. As you progress with R, you will learn that there are
+> multiple ways to accomplish this. Sometimes the choice of one method
+> over another is more a matter of personal style, but other times it
+> can have consequences for the speed of your code. For instruction on
+> best practices, see this [software carpentry supplementary
+> lesson](http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/)
+> that demonstrates how to properly repeat operations in R.
 
 ## More challenge
 
