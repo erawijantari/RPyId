@@ -90,7 +90,7 @@ Time: **TBA**
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: **TBA** (Mostly trial using [scikit-learn](https://scikit-learn.org/stable/)
+Notes: **TBA** (Mostly trial using [scikit-learn](https://scikit-learn.org/stable/).
 
 ## Optional
 9. Introductions to UNIX and command line scripting
