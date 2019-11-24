@@ -16,11 +16,6 @@ Fitria Utami
     <http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html>
   - Application
     <http://swcarpentry.github.io/r-novice-inflammation/03-loops-R/index.html>
-  - Problem set: TBA
-
-\*Notes: the notes was created in Python 3 kernel with extension for
-runing R code because some of the participants already familiar with
-Python.
 
 ### Data types and structure
 
@@ -39,9 +34,9 @@ Functions is a defined sections of program that perform a specific task.
 Defining a functions is very usefull if you are going to perform similar
 task for several times. For example, you have several data that you will
 visualize as a barplot, then it is better to create a defined function
-to plot a barplot. In the example of [Creating
+to plot a barplot. Below is the example to convert Fahrenheit into
+Celsius from the example in [Creating
 functions](http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html).
-Below is the example to convert Fahrenheit into Celsius.
 
 Defining the function. Pay attention to the syntax of defining the
 functions in R and Python below.
@@ -156,8 +151,9 @@ print_words(best_practice[-6])
     ## [1] NA
 
 R seems nice because it dose not throw an error, in python, this is a
-big NO. Example in
-python.
+big NO. Below is an example in python. You can see that it will not let
+your code
+continue.
 
 ``` python
 best_practice=["Let", "the", "computer", "do", "the", "work"] #this is call `list` in python, we will talk about this later.
@@ -208,7 +204,7 @@ print_words(best_practice)
     ## [1] "the"
     ## [1] "work"
 
-Please try anothe example in
+Please try another example in
 <http://swcarpentry.github.io/r-novice-inflammation/03-loops-R/index.html>
 before we are going to process our multiple files.
 
