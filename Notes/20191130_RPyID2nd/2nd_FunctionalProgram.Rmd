@@ -1,6 +1,6 @@
 ---
 title: "Let's make it functional part 1: R series"
-output: html_document
+output: github_document
 ---
 **2ndMeeting - Saturday, November 23, 2019**
 
