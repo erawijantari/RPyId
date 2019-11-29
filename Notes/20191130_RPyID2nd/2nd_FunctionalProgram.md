@@ -24,8 +24,13 @@ Let’s make it functional part 1: R series
 
 ### Data types and structure
 
-R contains 6 data types and structures, which are: \* character \*
-numeric (real or decimal) \* integer \* logical \* complex
+R contains 6 data types and structures, which are:
+
+  - character
+  - numeric (real or decimal)
+  - integer
+  - logical
+  - complex
 
 Please read and try the example here:
 <https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/>
@@ -61,9 +66,8 @@ fahrenheit_to_celsius(100)
 **Python**
 
 ``` python
-import numpy as np
 def fahrenheit_to_celcius(temp_F):
-  temp_C = ((np.float(temp_F)-32)*5/9)
+  temp_C = ((float(temp_F)-32)*5/9)
   return(temp_C)
 fahrenheit_to_celcius(100)
 ```
