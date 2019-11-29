@@ -438,20 +438,42 @@ want to extract some specific data from it, we need to specify the
 column numbers. However, note that different ways of specifying these
 coordinates lead to results with different classes.
 
-    # first element in the first column of the data frame (as a vector)
-    surveys[1, 1]   
-    # first element in the 6th column (as a vector)
-    surveys[1, 6]   
+``` r
+# first element in the first column of the data frame (as a vector)
+surveys[1, 1]
+```
+
+    ## [1] 1
+
+``` r
+# first element in the 6th column (as a vector)
+surveys[1, 6]   
+```
+
+    ## [1] NL
+    ## 48 Levels: AB AH AS BA CB CM CQ CS CT CU CV DM DO DS DX NL OL OT OX ... ZL
+
     # first column of the data frame (as a vector)
-    surveys[, 1]    
+    surveys[, 1]
+
     # first column of the data frame (as a data.frame)
-    surveys[1]      
-    # first three elements in the 7th column (as a vector)
-    surveys[1:3, 7] 
+    surveys[1] 
+
+``` r
+# first three elements in the 7th column (as a vector)
+surveys[1:3, 7] 
+```
+
+    ## [1] M M  
+    ## Levels:  F M
+
     # the 3rd row of the data frame (as a data.frame)
-    surveys[3, ]    
-    # equivalent to head_surveys <- head(surveys)
-    head_surveys <- surveys[1:6, ] 
+    surveys[3, ] 
+
+``` r
+# equivalent to head_surveys <- head(surveys)
+head_surveys <- surveys[1:6, ] 
+```
 
 `:`is a special function that creates numeric vectors of integers in
 increasing or decreasing order, test `1:10` and `10:1` for instance.
@@ -460,6 +482,7 @@ You can also exclude certain indices of a data frame using the “-”
     sign:
 
     surveys[, -1]          # The whole data frame, except the first column
+
     surveys[-c(7:34786), ] # Equivalent to head(surveys)
 
 Data frames can be subset by calling indices (as shown previously), but
@@ -614,7 +637,7 @@ experiment:
 plot(surveys$sex)
 ```
 
-![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 In addition to males and females, there are about 1700 individuals for
 which the sex information hasn’t been recorded. Additionally, for these
 individuals, there is no label to indicate that the information is
