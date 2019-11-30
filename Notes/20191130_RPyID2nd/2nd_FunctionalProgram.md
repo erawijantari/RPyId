@@ -360,7 +360,10 @@ on your local machine. You’ll need to have a folder on your machine
 called “data\_raw” where you’ll download the file. So this command
 downloads a file from Figshare, names it “portal\_data\_joined.csv,” and
 adds it to a preexisting folder named “data\_raw”. To create a folder in
-your directory using you terminal you can do `mkdir data_raw`.
+your directory using you terminal you can do `mkdir data_raw`, or inside
+R.
+
+    dir.create("data_raw")
 
 ``` r
 download.file(url="https://ndownloader.figshare.com/files/2292169",
@@ -424,7 +427,7 @@ head(surveys)
 Read more about what is dataframe
 [here](%22https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html#what_are_data_frames%22).
 
-**Answer this questions\!**
+**Problem 1**
 
     - What is the class of the object "surveys" ?
     - How many rows and how many columns are in this object?
@@ -493,11 +496,23 @@ also by calling their column names directly:
     surveys[["species_id"]]     # Result is a vector
     surveys$species_id          # Result is a vector
 
-In RStudio, you can use the autocompletion (by presing `tab`) feature to
-get the full and correct names of the
-    columns.
+Shows columns names in dataframe.
 
-**Challenge**
+``` r
+colnames(surveys)
+```
+
+    ##  [1] "record_id"       "month"           "day"            
+    ##  [4] "year"            "plot_id"         "species_id"     
+    ##  [7] "sex"             "hindfoot_length" "weight"         
+    ## [10] "genus"           "species"         "taxa"           
+    ## [13] "plot_type"
+
+In RStudio, you can use the autocompletion (by presing `tab`) feature to
+get the full and correct names of the columns.
+
+**Problem
+    2**
 
     1. Create a `data.frame` (surveys_200) containing only the data in row 200 of the surveys dataset.
     
@@ -509,7 +524,7 @@ get the full and correct names of the
     
     3. Use nrow() to extract the row that is in the middle of the data frame. Store the content of this row in an object named surveys_middle.
     
-    3. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
+    4. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
 
 ### Factors
 
@@ -637,7 +652,7 @@ experiment:
 plot(surveys$sex)
 ```
 
-![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 In addition to males and females, there are about 1700 individuals for
 which the sex information hasn’t been recorded. Additionally, for these
 individuals, there is no label to indicate that the information is
@@ -674,6 +689,15 @@ head(sex)
     ## [1] M            M            undetermined undetermined undetermined
     ## [6] undetermined
     ## Levels: undetermined F M
+
+Showing numerical data in
+histogram:
+
+``` r
+hist(surveys$hindfoot_length)
+```
+
+![](2nd_FunctionalProgram_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 By default, when building or importing a data frame, the columns that
 contain characters (i.e. text) are coerced (= converted) into factors.
