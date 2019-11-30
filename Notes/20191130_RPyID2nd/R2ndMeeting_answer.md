@@ -34,23 +34,12 @@ length(unique(surveys$species))
 
     ## [1] 40
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4816d08570fa10fb298ef35c5b49f6eedc79b9f3
 **Problem 2**
 
 1.  Create a `data.frame` (surveys\_200) containing only the data in row
     200 of the surveys dataset.
 
 <!-- end list -->
-<<<<<<< HEAD
-=======
-=======
-**Problem 2** 1. Create a `data.frame` (surveys\_200) containing only
-the data in row 200 of the surveys dataset.
->>>>>>> e31bd9697beedaf835f301c4945cd90da72d79bc
->>>>>>> 4816d08570fa10fb298ef35c5b49f6eedc79b9f3
 
 ``` r
 surveys_200 <- surveys[200, ]
