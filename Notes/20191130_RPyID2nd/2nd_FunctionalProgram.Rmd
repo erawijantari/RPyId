@@ -196,7 +196,11 @@ reference : <https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.ht
 Please read the explanations about [starting with data in R](https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html) once you finish with the `for loop` and `function` excersise. The data is about the species repartition and weight of animals caught in plots in specific study area. The dataset is stored as a comma separated value (CSV) file. 
 
 ### Loading data as dataframe
-We are going to use the R function `download.file()` to download the CSV file that contains the survey data from Figshare, and we will use `read.csv()` to load into memory the content of the CSV file as an object of class data.frame. Inside the download.file command, the first entry is a character string with the source URL <“https://ndownloader.figshare.com/files/2292169”>. This source URL downloads a CSV file from figshare. The text after the comma (“data_raw/portal_data_joined.csv”) is the destination of the file on your local machine. You’ll need to have a folder on your machine called “data_raw” where you’ll download the file. So this command downloads a file from Figshare, names it “portal_data_joined.csv,” and adds it to a preexisting folder named “data_raw”. To create a folder in your directory using you terminal you can do `mkdir data_raw`.
+We are going to use the R function `download.file()` to download the CSV file that contains the survey data from Figshare, and we will use `read.csv()` to load into memory the content of the CSV file as an object of class data.frame. Inside the download.file command, the first entry is a character string with the source URL <“https://ndownloader.figshare.com/files/2292169”>. This source URL downloads a CSV file from figshare. The text after the comma (“data_raw/portal_data_joined.csv”) is the destination of the file on your local machine. You’ll need to have a folder on your machine called “data_raw” where you’ll download the file. So this command downloads a file from Figshare, names it “portal_data_joined.csv,” and adds it to a preexisting folder named “data_raw”. To create a folder in your directory using you terminal you can do `mkdir data_raw`, or inside R.
+
+```
+dir.create("data_raw")
+```
 
 ```{r}
 download.file(url="https://ndownloader.figshare.com/files/2292169",
@@ -221,12 +225,13 @@ The header argument has to be set to TRUE to be able to read the headers as by d
 
 Read more about what is dataframe [here]("https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html#what_are_data_frames"). 
 
-**Answer this questions!**
+**Problem 1**
 ```
 - What is the class of the object "surveys" ?
 - How many rows and how many columns are in this object?
 - How many species have been recorded during these surveys?
 ```
+[Answer to Problem 1](https://github.com/erawijantari/RPyId/blob/master/Notes/20191130_RPyID2nd/R2ndMeeting_answer.md)
 
 ### Indexing and subseting dataframe
 Our survey data frame has rows and columns (it has 2 dimensions), if we want to extract some specific data from it, we need to specify the “coordinates” we want from it. Row numbers come first, followed by column numbers. However, note that different ways of specifying these coordinates lead to results with different classes.
@@ -277,10 +282,15 @@ surveys[, "species_id"]     # Result is a vector
 surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
 ```
+Shows columns names in dataframe.
+```{r}
+colnames(surveys)
+```
+
 In RStudio, you can use the autocompletion (by presing `tab`) feature to get the full and correct names of the columns.
 
 
-**Challenge**
+**Problem 2**
 ``` 
 1. Create a `data.frame` (surveys_200) containing only the data in row 200 of the surveys dataset.
 
@@ -292,8 +302,9 @@ In RStudio, you can use the autocompletion (by presing `tab`) feature to get the
 
 3. Use nrow() to extract the row that is in the middle of the data frame. Store the content of this row in an object named surveys_middle.
 
-3. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
+4. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
 ```
+[Answer to Problem 2](https://github.com/erawijantari/RPyId/blob/master/Notes/20191130_RPyID2nd/R2ndMeeting_answer.md)
 
 ### Factors
 When we did `str(surveys)` we saw that several of the columns consist of integers. The columns `genus`, `species`, `sex`, `plot_type`, … however, are of a special class called factor. Factors are very useful and actually contribute to making R particularly well suited to working with data. So we are going to spend a little time introducing them.
@@ -361,6 +372,11 @@ levels(sex)
 head(sex)
 ```
 
+Showing numerical data in histogram:
+```{r}
+hist(surveys$hindfoot_length)
+```
+
 By default, when building or importing a data frame, the columns that contain characters (i.e. text) are coerced (= converted) into factors. Depending on what you want to do with the data, you may want to keep these columns as character. To do so, `read.csv()` and ``read.table() have an argument called `stringsAsFactors` which can be set to FALSE.
 
 In most cases, it is preferable to set `stringsAsFactors = FALSE` when importing data and to convert as a factor only the columns that require this data type.
@@ -382,6 +398,7 @@ The automatic conversion of data type is sometimes a blessing, sometimes an anno
 Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio).
 
 ## More challenge
+
 See notebooks here, it also cover our next meeting topics.
 <https://www.kaggle.com/rtatman/getting-started-in-r-load-data-into-r>.
 

@@ -1,0 +1,52 @@
+---
+title: "Answer for problem in Let's make it functional part 1: R series"
+output: github_document
+---
+**Problem 1**
+
+- What is the class of the object "surveys" ?
+Answer: 
+```{r}
+surveys <- read.csv("data_raw/portal_data_joined.csv")
+class(surveys)
+```
+- How many rows and how many columns are in this object?
+```{r}
+dim(surveys)
+```
+- How many species have been recorded during these surveys?
+```{r}
+length(unique(surveys$species))
+```
+
+**Problem 2**
+
+1. Create a `data.frame` (surveys_200) containing only the data in row 200 of the surveys dataset.
+```{r}
+surveys_200 <- surveys[200, ]
+surveys_200
+```
+2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
+  - Use that number to pull out just that last row in the data frame.
+  - Compare that with what you see as the last row using tail() to make sure it’s meeting expectations.
+  - Pull out that last row using nrow() instead of the row number.
+  - Create a new data frame (surveys_last) from that last row.
+```{r}
+last_row <- nrow(surveys)
+surveys_last <- surveys[last_row, ]
+surveys_last
+```
+3. Use nrow() to extract the row that is in the middle of the data frame. Store the content of this row in an object named surveys_middle.
+```{r}
+surveys_middle <- surveys[c(last_row / 2 - 1, last_row / 2) , ]
+surveys_middle
+```
+4. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
+```{r}
+surveys[-c(7:last_row), ]
+```
+Alternative to show the table, you can use `View()` which will show the table in new tab in Rstudio.
+
+
+
+
