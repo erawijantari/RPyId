@@ -528,12 +528,9 @@ get the full and correct names of the columns.
     3. Use nrow() to extract the row that is in the middle of the data frame. Store the content of this row in an object named surveys_middle.
     
     4. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
-<<<<<<< HEAD
 
 [Answer to
 Problem 2](https://github.com/erawijantari/RPyId/blob/master/Notes/20191130_RPyID2nd/R2ndMeeting_answer.md)
-=======
->>>>>>> e31bd9697beedaf835f301c4945cd90da72d79bc
 
 ### Factors
 

@@ -304,6 +304,7 @@ In RStudio, you can use the autocompletion (by presing `tab`) feature to get the
 
 4. Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.
 ```
+
 [Answer to Problem 2](https://github.com/erawijantari/RPyId/blob/master/Notes/20191130_RPyID2nd/R2ndMeeting_answer.md)
 
 ### Factors
