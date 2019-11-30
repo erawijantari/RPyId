@@ -767,3 +767,5 @@ See notebooks here, it also cover our next meeting topics.
   - Rmarkdown for reproducible documentation:
     <https://bookdown.org/yihui/rmarkdown/>
   - R graph cookbook: <https://r-graphics.org/>
+  - Feeling gig for Regex (regular expression):
+    <http://www.grymoire.com/Unix/Regular.html>
