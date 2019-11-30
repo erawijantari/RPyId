@@ -757,4 +757,13 @@ tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data
 ## More challenge
 
 See notebooks here, it also cover our next meeting topics.
-<https://www.kaggle.com/rtatman/getting-started-in-r-load-data-into-r>
+<https://www.kaggle.com/rtatman/getting-started-in-r-load-data-into-r>.
+
+## Further Reading
+
+  - The core of R (deep understanding how R work):
+    <https://adv-r.hadley.nz/>
+  - R for Data Science: <https://r4ds.had.co.nz/>
+  - Rmarkdown for reproducible documentation:
+    <https://bookdown.org/yihui/rmarkdown/>
+  - R graph cookbook: <https://r-graphics.org/>
