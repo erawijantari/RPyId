@@ -5,7 +5,7 @@ Let’s make it functional part 1: R series
 
 **Tutors and Organizers:**
 
-  - Pande Putu Erawijantati
+  - Pande Putu Erawijantari
   - Felix Salim
   - Mia Fitria Utami
 

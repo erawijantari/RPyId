@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Tutors and Organizers:** 
 
-- Pande Putu Erawijantati
+- Pande Putu Erawijantari
 - Felix Salim
 - Mia Fitria Utami
 
