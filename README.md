@@ -45,9 +45,9 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes were placed at ``./Notes/20191130_RPyID2nd`` contains the exercise for creating functions, applying functions to multiple datasets, and starting with dataframe for introductions to the next meeting.
 
 ## 3rdMeeting-Data is beautiful part 1 - Hello Tidyverse!
-Date: **TBA**
+Date: December 15, 2019
 
-Time: **TBA**
+Time: 10:00 am - 13:00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
