@@ -42,7 +42,7 @@ Time: 02:00 pm - 05: 00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes were placed at ``./Notes/20191130_RPyID2nd`` contains the exercise for creating functions, applying functions to multiple datasets, and starting with dataframe for introductions to the next meeting.
+Notes were placed at `./Notes/20191130_RPyID2nd` contains the exercise for creating functions, applying functions to multiple datasets, and starting with dataframe for introductions to the next meeting.
 
 ## 3rdMeeting-Data is beautiful part 1 - Hello Tidyverse!
 Date: December 15, 2019
@@ -51,7 +51,7 @@ Time: 10:00 am - 13:00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: **TBA** (Content will be about introduction of tydiverse and hands on on data wrangling in R)
+Notes: `./Notes/20191215_RPyID3rd` contains about introduction of tydiverse and hands on on data wrangling in R.
 
 ## 4thMeeting-Data is beautiful part 2 - visualizations with ggplot: R series
 Date: **TBA**
@@ -73,7 +73,7 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: **TBA** (Introductions of numpy and data wrangling with pandas, posibly a litle bit visualizations using searborn/matplotlib)
 
 
-## 6thMeeting-Data is beautiful part 2 - visualizations with matplotlib and/or seaborn : Python series
+## 6thMeeting-Data is beautiful part 3 - visualizations with matplotlib and/or seaborn : Python series
 
 Date: **TBA**
 
