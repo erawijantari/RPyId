@@ -98,10 +98,10 @@ We will use **dyplyr** and **tidyr** to help us through. **dplyr** is a
 package for making tabular data manipulation easier. It pairs nicely
 with **tidyr** which enables us to swiftly convert between different
 data formats for plotting and analysis. To learn more about **dyplyr**
-and **tidyr**, you may want to check out \[dyplyr
-cheatsheet\]<https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf>
-and \[tidyr
-cheatsheet\]<https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf>.
+and **tidyr**, you may want to check out [dyplyr
+cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+and [tidyr
+cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
 
 As mentioned before, it all installed together during the **tidyverse**
 installation. Let’s load the package
@@ -111,16 +111,16 @@ installation. Let’s load the package
 library("tidyverse")
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
-    ## ✔ ggplot2 3.2.0     ✔ purrr   0.3.2
-    ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-    ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
-    ## ✔ readr   1.3.1     ✔ forcats 0.4.0
+    ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
+    ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
+    ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
+    ## ✓ readr   1.3.1     ✓ forcats 0.4.0
 
     ## ── Conflicts ────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
 
 We’ll read in our data using the `read_csv()` function, from the
 tidyverse package readr, instead of `read.csv()` (notice the
@@ -385,10 +385,10 @@ surveys_sml
 ## 17 RM         M          4
 ```
 
-**Challenge 1 (10 min)
-    **
+**Challenge 1 (10 min) **
 
-    Using pipes, subset the surveys data to include animals collected before 1995 and retain only the columns year, sex, and weight.
+> Using pipes, subset the surveys data to include animals collected
+> before 1995 and retain only the columns year, sex, and weight.
 
 #### Mutate
 
@@ -470,12 +470,14 @@ surveys %>%
 The `!` symbol negates the result, so we’re asking for every row where
 weight is not an NA.
 
-**Challenge 2 (15
-    min)**
+**Challenge 2 (15 min)**
 
-    Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.
-    
-    Hint: think about how the commands should be ordered to produce this data frame!
+> Create a new data frame from the surveys data that meets the following
+> criteria: contains only the species\_id column and a new column called
+> hindfoot\_half containing values that are half the hindfoot\_length
+> values. In this hindfoot\_half column, there are no NAs and all values
+> are less than 30. Hint: think about how the commands should be ordered
+> to produce this data frame\!
 
 #### Split-apply-combine data analysis and the summarize() function
 
@@ -660,34 +662,55 @@ surveys %>%
 
 **Challenge 3 (20 min)**
 
-    1. How many animals were caught in plot_type surveyed?
-    2. Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
-    3. What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight.
+> 1.  How many animals were caught in plot\_type surveyed?
+> 2.  Use group\_by() and summarize() to find the mean, min, and max
+>     hindfoot length for each species (using species\_id). Also add the
+>     number of observations (hint: see ?n).
+> 3.  What was the heaviest animal measured in each year? Return the
+>     columns year, genus, species\_id, and weight.
 
-#### Reshaping with gather and spread - Tidying up the data
+#### Reshaping the data - Tidying up the data
+
+We have to learn the concept of **Data Tidying** in R to better handle
+our data before processing to analysis such as visualizations,
+statistical test, aplying functions, and others. We will use **tidyr**
+for tidying up our data.
+
+**Key to remember: Tidy data format**
+
+> > 1.  Every column is variable.
+> > 2.  Every row is an observation.
+> > 3.  Every cell is a single value.
 
 Sometimes, we just want to analyze particular element of the data. To
 extract the informations and still make the data tidy, we can reshape
-our data according to the observations of interest. Let’s try data
-transformations with two `tidyr` functions `spread` and `gather`.
+our data according to the observations of interest which could be in
+**long** format or **wide** format. You may want to read more
+[here](https://tidyr.tidyverse.org/articles/tidy-data.html).
 
-**Spreading**
+In the previous versions, there are two `tidyr` functions named
+`spread()` and `gather()` to help us reshaping our data. In the [data
+carperntry
+example](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html), you
+can see how we can use that functions. In newer version, there are
+replacement for `spread()` and `gather()`. `spread()` and `gather()`
+will stay there but not in active development. Today, we will use the
+replacement named `pivot_wider` and `pivot_longer`.
 
-`spread()` takes three principal arguments:
+**Convert long format to wide format**
 
-1.  the data
-2.  the key column variable whose values will become new column names.
-3.  the value column variable whose values will fill the new column
-    variables.
+*Case*: compare the different mean weight of each genus between plots?
+(Ignoring plot\_type for simplicity).
 
-Further arguments include fill which, if set, fills in missing values
-with the value provided.
+*Solution*: extract the table so it will contains the name of `genus` in
+the columns, rows is the onservations, and cells contains the mean
+weight for each genus.
 
-Let’s use spread() to transform surveys to find the mean weight of each
-species in each plot over the entire survey period. We use `filter()`,
-`group_by()` and `summarise()` to filter our observations and variables
-of interest, and create a new variable for the mean\_weight. We use the
-pipe as before too.
+Let’s use `pivot_wider` to transform surveys to find the mean weight of
+each genus in each plot over the entire survey period. We use
+`filter()`, `group_by()` and `summarise()` to filter our observations
+and variables of interest, and create a new variable for the
+mean\_weight. We use the pipe as before too.
 
 ``` r
 surveys_gw <- surveys %>% 
@@ -733,93 +756,87 @@ str(surveys_gw)
 ```
 
 This yields `surveys_gw` where the observations for each plot are spread
-across multiple rows, 196 observations of 3 variables. Using spread() to
-key on genus with values from mean\_weight this becomes 24 observations
-of 11 variables, one row for each plot. We again use pipes:
+across multiple rows, 196 observations of 3 variables. `pivot_wider`
+will “widens” data, increasing the number of columns and decreasing the
+number of rows. We will get 24 observations of 11 variables, one row for
+each plot. We again use pipes. Let’s also fill the mising value with 0
 
 ``` r
-surveys_spread <- surveys_gw %>% 
-  spread(key = genus, value = mean_weight)
+surveys_wider <- surveys_gw %>% 
+  pivot_wider(names_from= genus, values_from= mean_weight, 
+              values_fill = list(mean_weight=0))
 
-str(surveys_spread)
+str(surveys_wider)
 ## Classes 'tbl_df', 'tbl' and 'data.frame':    24 obs. of  11 variables:
-##  $ plot_id        : num  1 2 3 4 5 6 7 8 9 10 ...
-##  $ Baiomys        : num  7 6 8.61 NA 7.75 ...
-##  $ Chaetodipus    : num  22.2 25.1 24.6 23 18 ...
-##  $ Dipodomys      : num  60.2 55.7 52 57.5 51.1 ...
-##  $ Neotoma        : num  156 169 158 164 190 ...
-##  $ Onychomys      : num  27.7 26.9 26 28.1 27 ...
-##  $ Perognathus    : num  9.62 6.95 7.51 7.82 8.66 ...
-##  $ Peromyscus     : num  22.2 22.3 21.4 22.6 21.2 ...
-##  $ Reithrodontomys: num  11.4 10.7 10.5 10.3 11.2 ...
-##  $ Sigmodon       : num  NA 70.9 65.6 82 82.7 ...
-##  $ Spermophilus   : num  NA NA NA NA NA NA NA NA NA NA ...
+##  $ plot_id        : num  1 2 3 5 18 19 20 21 4 6 ...
+##  $ Baiomys        : num  7 6 8.61 7.75 9.5 ...
+##  $ Chaetodipus    : num  22.2 25.1 24.6 18 26.8 ...
+##  $ Dipodomys      : num  60.2 55.7 52 51.1 61.4 ...
+##  $ Neotoma        : num  156 169 158 190 149 ...
+##  $ Onychomys      : num  27.7 26.9 26 27 26.6 ...
+##  $ Perognathus    : num  9.62 6.95 7.51 8.66 8.62 ...
+##  $ Peromyscus     : num  22.2 22.3 21.4 21.2 21.4 ...
+##  $ Reithrodontomys: num  11.4 10.7 10.5 11.2 11.1 ...
+##  $ Sigmodon       : num  0 70.9 65.6 82.7 46.1 ...
+##  $ Spermophilus   : num  0 0 0 0 0 0 57 0 0 0 ...
 ```
 
-We could now plot comparisons between the weight of species in different
-plots, although we may wish to fill in the missing values first. For
-example, let’s fill the empty value with 0.
-
-``` r
-surveys_gw %>% 
-  spread(genus, mean_weight, fill=0) %>% 
-  head()
-## # A tibble: 6 x 11
-##   plot_id Baiomys Chaetodipus Dipodomys Neotoma Onychomys Perognathus
-##     <dbl>   <dbl>       <dbl>     <dbl>   <dbl>     <dbl>       <dbl>
-## 1       1    7           22.2      60.2    156.      27.7        9.62
-## 2       2    6           25.1      55.7    169.      26.9        6.95
-## 3       3    8.61        24.6      52.0    158.      26.0        7.51
-## 4       4    0           23.0      57.5    164.      28.1        7.82
-## 5       5    7.75        18.0      51.1    190.      27.0        8.66
-## 6       6    0           24.9      58.6    180.      25.9        7.81
-## # … with 4 more variables: Peromyscus <dbl>, Reithrodontomys <dbl>,
-## #   Sigmodon <dbl>, Spermophilus <dbl>
-```
-
-**Gathering**
+**Convert wide format to long format**
 
 The opposing situation could occur if we had been provided with data in
-the form of `surveys_spread`, where the genus names are column names,
-but we wish to treat them as values of a genus variable instead.
+the form of `surveys_wide`, where the genus names are column names, but
+we wish to treat them as values of a genus variable instead.
 
-In this situation we are gathering the column names and turning them
-into a pair of new variables. One variable represents the column names
-as values, and the other variable contains the values previously
-associated with the column names.
+In this situation we can reshape it by Keying the column names and
+turning them into a pair of new variables. One variable represents the
+column names as values, and the other variable contains the values
+previously associated with the column names.
 
-`gather()` takes four principal arguments:
-
-1.  the data
-2.  the key column variable we wish to create from column names.
-3.  the values column variable we wish to create and fill with values
-    associated with the key.
-4.  the names of the columns we use to fill the key variable (or to
-    drop).
-
-To recreate `surveys_gw` from `surveys_spread` we would create a key
+To recreate `surveys_gw` from `surveys_wide` we would create a key
 called “genus” and value called “mean\_weight” and use all columns
 except “plot\_id” for the key variable. Here we drop “plot\_id” column
-with a minus sign.
+with a minus sign. We will name our new table as surveys\_longer.
 
 ``` r
-surveys_gather <- surveys_spread %>% 
-  gather(key=genus, value=mean_weight, -plot_id)
+surveys_longer <- surveys_wider %>% 
+  pivot_longer(names_to = "genus", values_to = "mean_weight", -plot_id)
   
-str(surveys_gather)
+str(surveys_longer)
 ## Classes 'tbl_df', 'tbl' and 'data.frame':    240 obs. of  3 variables:
-##  $ plot_id    : num  1 2 3 4 5 6 7 8 9 10 ...
-##  $ genus      : chr  "Baiomys" "Baiomys" "Baiomys" "Baiomys" ...
-##  $ mean_weight: num  7 6 8.61 NA 7.75 ...
+##  $ plot_id    : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ genus      : chr  "Baiomys" "Chaetodipus" "Dipodomys" "Neotoma" ...
+##  $ mean_weight: num  7 22.2 60.2 156.2 27.7 ...
 ```
 
-**Challenge 4 (20
-    min)**
+**Challenge 4 (20 min)**
 
-    1. Spread the surveys data frame with year as columns, plot_id as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function n_distinct() to get the number of unique genera within a particular chunk of data. It’s a powerful function! See ?n_distinct for more.
-    2. Now take that data frame and gather() it again, so each row is a unique plot_id by year combination.
-    3. The surveys data set has two measurement columns: hindfoot_length and weight. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use gather() to create a dataset where we have a key column called measurement and a value column that takes on the value of either hindfoot_length or weight. Hint: You’ll need to specify which columns are being gathered.
-    4. With this new data set, calculate the average of each measurement in each year for each different plot_type. Then spread() them into a data set with a column for hindfoot_length and weight. Hint: You only need to specify the key and value columns for spread().
+> 1.  Spread the surveys data frame with year as columns, plot\_id as
+>     rows, and the number of genera per plot as the values. You will
+>     need to summarize before reshaping, and use the function
+>     n\_distinct() to get the number of unique genera within a
+>     particular chunk of data. It’s a powerful function\! See
+>     ?n\_distinct for more.
+> 2.  Now take that data frame and gather() it again, so each row is a
+>     unique plot\_id by year combination.
+> 3.  The surveys data set has two measurement columns: hindfoot\_length
+>     and weight. This makes it difficult to do things like look at the
+>     relationship between mean values of each measurement per year in
+>     different plot types. Let’s walk through a common solution for
+>     this type of problem. First, use gather() to create a dataset
+>     where we have a key column called measurement and a value column
+>     that takes on the value of either hindfoot\_length or weight.
+>     Hint: You’ll need to specify which columns are being gathered.
+> 4.  With this new data set, calculate the average of each measurement
+>     in each year for each different plot\_type. Then spread() them
+>     into a data set with a column for hindfoot\_length and weight.
+>     Hint: You only need to specify the key and value columns for
+>     spread().
+
+You can see another example of tidying up the data in example of
+[pivot\_longer](https://tidyr.tidyverse.org/reference/pivot_longer.html),
+[pivot\_wider](https://tidyr.tidyverse.org/reference/pivot_wider.html),
+or complex example
+[here](https://www.brodrigues.co/blog/2019-03-20-pivot/).
 
 #### Exporting data
 
