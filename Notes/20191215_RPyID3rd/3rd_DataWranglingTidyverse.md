@@ -385,11 +385,10 @@ surveys_sml
 ## 17 RM         M          4
 ```
 
-\<\<\<\<\<\<\< HEAD **Challenge 1 (10 min)**
+**Challenge 1 (10 min)**
 
-\======= \>\>\>\>\>\>\> 00801951a2bf581f1a76f3c7307ae88d40679311 \>
-Using pipes, subset the surveys data to include animals collected before
-1995 and retain only the columns year, sex, and weight.
+> Using pipes, subset the surveys data to include animals collected
+> before 1995 and retain only the columns year, sex, and weight.
 
 #### Mutate
 
