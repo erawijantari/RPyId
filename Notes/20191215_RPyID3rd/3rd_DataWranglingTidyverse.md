@@ -385,10 +385,11 @@ surveys_sml
 ## 17 RM         M          4
 ```
 
-**Challenge 1 (10 min)**
+\<\<\<\<\<\<\< HEAD **Challenge 1 (10 min)**
 
-> Using pipes, subset the surveys data to include animals collected
-> before 1995 and retain only the columns year, sex, and weight.
+\======= \>\>\>\>\>\>\> 00801951a2bf581f1a76f3c7307ae88d40679311 \>
+Using pipes, subset the surveys data to include animals collected before
+1995 and retain only the columns year, sex, and weight.
 
 #### Mutate
 
@@ -676,7 +677,7 @@ our data before processing to analysis such as visualizations,
 statistical test, aplying functions, and others. We will use **tidyr**
 for tidying up our data.
 
-**Key to remember: Tidy data format**
+**Key to remember: Tidy data format** \<\<\<\<\<\<\< HEAD
 
 > > 1.  Every column is variable.
 > > 2.  Every row is an observation.
@@ -702,9 +703,36 @@ replacement named `pivot_wider` and `pivot_longer`.
 *Case*: compare the different mean weight of each genus between plots?
 (Ignoring plot\_type for simplicity).
 
-*Solution*: extract the table so it will contains the name of `genus` in
-the columns, rows is the onservations, and cells contains the mean
-weight for each genus.
+\=======
+
+> > 1.  Every column is variable.
+> > 2.  Every row is an observation.
+> > 3.  Every cell is a single value.
+
+Sometimes, we just want to analyze particular element of the data. To
+extract the informations and still make the data tidy, we can reshape
+our data according to the observations of interest which could be in
+**long** format or **wide** format. You may want to read more
+[here](https://tidyr.tidyverse.org/articles/tidy-data.html).
+
+In the previous versions, there are two `tidyr` functions named
+`spread()` and `gather()` to help us reshaping our data. In the [data
+carperntry
+example](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html), you
+can see how we can use that functions. In newer version, there are
+replacement for `spread()` and `gather()`. `spread()` and `gather()`
+will stay there but not in active development. Today, we will use the
+replacement named `pivot_wider` and `pivot_longer`.
+
+**Convert long format to wide format**
+
+*Case*: compare the different mean weight of each genus between plots?
+(Ignoring plot\_type for simplicity).
+
+> > > > > > > 00801951a2bf581f1a76f3c7307ae88d40679311 *Solution*:
+> > > > > > > extract the table so it will contains the name of `genus`
+> > > > > > > in the columns, rows is the onservations, and cells
+> > > > > > > contains the mean weight for each genus.
 
 Let’s use `pivot_wider` to transform surveys to find the mean weight of
 each genus in each plot over the entire survey period. We use
