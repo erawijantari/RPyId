@@ -1,0 +1,152 @@
+---
+title: "Answer for challenge in Data is beautiful part 1 - Hello Tidyverse! : R Seriesr"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Challenge 1
+
+> Using pipes, subset the surveys data to include animals collected before 1995 and retain only the columns year, sex, and weight.
+
+
+```{r,collapse=TRUE}
+## load the tidyverse packages, incl. dplyr
+library("tidyverse")
+#load data as surveys
+surveys <- read_csv("data_raw/portal_data_joined.csv")
+```
+
+```{r,collapse=TRUE}
+surveys_cl1 <- surveys %>%
+  filter(year<1995) %>%
+  select(year,sex, weight)
+glimpse(surveys_cl1)
+```
+
+Notice that we can sellect multiple columns. `,` is for **and** and `|` is for **or**. Remeber we can use `glimpse()` to see the overview of data.
+
+## Challenge 2
+
+> Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.
+Hint: think about how the commands should be ordered to produce this data frame!
+
+
+```{r,collapse=TRUE}
+surveys_cl2 <- surveys %>%
+    filter(!is.na(hindfoot_length)) %>%
+    mutate(hindfoot_half = hindfoot_length / 2) %>%
+    filter(hindfoot_half < 30) %>%
+    select(species_id, hindfoot_half)
+glimpse(surveys_cl2)
+```
+
+## Challenge 3
+
+>
+1. How many animals were caught in plot_type surveyed?
+
+```{r}
+surveys %>%
+    count(plot_type) 
+```
+>
+2. Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
+
+```{r}
+surveys %>%
+    filter(!is.na(hindfoot_length)) %>%
+    group_by(species_id) %>%
+    summarize(
+        mean_hindfoot_length = mean(hindfoot_length),
+        min_hindfoot_length = min(hindfoot_length),
+        max_hindfoot_length = max(hindfoot_length),
+        n = n()
+    )
+```
+
+>
+3. What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight.
+
+```{r}
+surveys %>%
+    filter(!is.na(weight)) %>%
+    group_by(year) %>%
+    filter(weight == max(weight)) %>%
+    select(year, genus, species, weight) %>%
+    arrange(year)
+```
+
+## Challenge 4
+
+>
+1. Spread (convert the long format to wide format) the surveys data frame with year as columns, plot_id as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function n_distinct() to get the number of unique genera within a particular chunk of data. It’s a powerful function! See ?n_distinct for more.
+
+Using `plot_wider()`
+
+```{r,collapse=TRUE}
+distinct_genera <- surveys %>%
+  group_by(plot_id, year) %>%
+  summarize(n_genera = n_distinct(genus)) %>%
+  pivot_wider(names_from= year, values_from= n_genera)
+
+head(distinct_genera)
+```
+
+Using `spread()`
+
+```{r,collapse=TRUE}
+rich_time <- surveys %>%
+  group_by(plot_id, year) %>%
+  summarize(n_genera = n_distinct(genus)) %>%
+  spread(year, n_genera)
+
+head(rich_time)
+```
+
+
+>
+2. Now take that data frame and gather (reshaped it into long format) again, so each row is a unique plot_id by year combination.
+
+Using `plot_longer()`
+```{r,collapse=TRUE}
+returned <- distinct_genera %>% 
+  pivot_longer(names_to = "year", values_to = "n_genera", -plot_id)
+  
+glimpse(returned)
+```
+
+Using `gather()`
+```{r,collapse=TRUE}
+returned_gather <- rich_time %>%
+  gather(year, n_genera, -plot_id)
+glimpse(returned_gather)
+```
+
+>
+3. The surveys data set has two measurement columns: hindfoot_length and weight. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use `gather()` or `pivot_longer()` to create a dataset where we have a key column called measurement and a value column that takes on the value of either hindfoot_length or weight. Hint: You’ll need to specify which columns are being gathered.
+
+
+use `gather()`
+```{r}
+surveys_long <- surveys %>%
+  gather(measurement, value, hindfoot_length, weight)
+glimpse(surveys_long)
+```
+
+>
+4. With this new data set, calculate the average of each measurement in each year for each different plot_type. Then spread() them into a data set with a column for hindfoot_length and weight. Hint: You only need to specify the key and value columns for `spread()` or `pivot_wider()`.
+
+use `spread()`
+
+```{r}
+surveys_long %>%
+  group_by(year, measurement, plot_type) %>%
+  summarize(mean_value = mean(value, na.rm=TRUE)) %>%
+  spread(measurement, mean_value)
+```
+
+
+
