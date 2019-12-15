@@ -63,8 +63,6 @@ For our **Data is beautiful: R series**, we will several packages named [dplyr](
 
 ### Data Wrangling Session
 
-**TIPS**: If you want to learn how to type the code properly, remember the structure for long run, and become sensitive of the typo error or understanding error message, **DO NOT copy paste the example**. But if you already know how it works, than it's ok to copy paste, as you are not supposed to remember every exact syntax. Copy paste at your own risk! 
-
 ref: <https://datacarpentry.org/R-ecology-lesson/03-dplyr.html>
 We have start looking at the data in the previous meeting but we haven't analyze it yet.
 Let's get your hand ready!
@@ -177,7 +175,9 @@ surveys_sml
 
 **Challenge 1 (10 min)**
 
->Using pipes, subset the surveys data to include animals collected before 1995 and retain only the columns year, sex, and weight.
+> Using pipes, subset the surveys data to include animals collected before 1995 and retain only the columns year, sex, and weight.
+
+See the answer [**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-1).
 
 #### Mutate
 
@@ -216,6 +216,7 @@ surveys %>%
 Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.
 Hint: think about how the commands should be ordered to produce this data frame!
 
+See the answer [**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-2)
 
 #### Split-apply-combine data analysis and the summarize() function
 
@@ -292,14 +293,14 @@ surveys %>%
 2. Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
 3. What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight.
 
+See the answer [**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-3).
+
 #### Reshaping the data - Tidying up the data
 
 We have to learn the concept of **Data Tidying** in R to better handle our data before processing to analysis such as visualizations, statistical test, aplying functions, and others. We will use **tidyr** for tidying up our data. 
 
 **Key to remember: Tidy data format**
-<<<<<<< HEAD
 
->> 
 1. Every column is variable.
 2. Every row is an observation.
 3. Every cell is a single value.
@@ -313,23 +314,6 @@ In the previous versions, there are two `tidyr` functions named `spread()` and `
 
 *Case*: compare the different mean weight of each genus between plots? (Ignoring plot_type for simplicity).
 
-=======
-
->> 
-1. Every column is variable.
-2. Every row is an observation.
-3. Every cell is a single value.
-
-
-Sometimes, we just want to analyze particular element of the data. To extract the informations and still make the data tidy, we can reshape our data according to the observations of interest which could be in **long** format or **wide** format. You may want to read more [here](https://tidyr.tidyverse.org/articles/tidy-data.html).
-
-In the previous versions, there are two `tidyr` functions named `spread()` and `gather()` to help us reshaping our data. In the [data carperntry example](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html), you can see how we can use that functions. In newer version, there are replacement for `spread()` and `gather()`. `spread()` and `gather()` will stay there but not in active development. Today, we will use the replacement named `pivot_wider` and `pivot_longer`.
-
-**Convert long format to wide format**
-
-*Case*: compare the different mean weight of each genus between plots? (Ignoring plot_type for simplicity).
-
->>>>>>> 00801951a2bf581f1a76f3c7307ae88d40679311
 *Solution*: extract the table so it will contains the name of `genus` in the columns, rows is the onservations, and cells contains the mean weight for each genus.
 
 Let’s use `pivot_wider` to transform surveys to find the mean weight of each genus in each plot over the entire survey period. We use `filter()`, `group_by()` and `summarise()` to filter our observations and variables of interest, and create a new variable for the mean_weight. We use the pipe as before too.
@@ -374,10 +358,13 @@ str(surveys_longer)
 **Challenge 4 (20 min)**
 
 >
-1. Spread the surveys data frame with year as columns, plot_id as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function n_distinct() to get the number of unique genera within a particular chunk of data. It’s a powerful function! See ?n_distinct for more.
+1. Spread (convert the long format to wide format) the surveys data frame with year as columns, plot_id as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function n_distinct() to get the number of unique genera within a particular chunk of data. It’s a powerful function! See ?n_distinct for more.
 2. Now take that data frame and gather() it again, so each row is a unique plot_id by year combination.
 3. The surveys data set has two measurement columns: hindfoot_length and weight. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use gather() to create a dataset where we have a key column called measurement and a value column that takes on the value of either hindfoot_length or weight. Hint: You’ll need to specify which columns are being gathered.
 4. With this new data set, calculate the average of each measurement in each year for each different plot_type. Then spread() them into a data set with a column for hindfoot_length and weight. Hint: You only need to specify the key and value columns for spread().
+
+
+See the answer [**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-4).
 
 You can see another example of tidying up the data in example of [pivot_longer](https://tidyr.tidyverse.org/reference/pivot_longer.html), [pivot_wider](https://tidyr.tidyverse.org/reference/pivot_wider.html), or complex example  [here](https://www.brodrigues.co/blog/2019-03-20-pivot/).
 

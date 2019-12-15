@@ -79,13 +79,6 @@ so let’s install it\!
 
 ### Data Wrangling Session
 
-**TIPS**: If you want to learn how to type the code properly, remember
-the structure for long run, and become sensitive of the typo error or
-understanding error message, **DO NOT copy paste the example**. But if
-you already know how it works, than it’s ok to copy paste, as you are
-not supposed to remember every exact syntax. Copy paste at your own
-risk\!
-
 ref: <https://datacarpentry.org/R-ecology-lesson/03-dplyr.html> We have
 start looking at the data in the previous meeting but we haven’t analyze
 it yet. Let’s get your hand ready\!
@@ -111,14 +104,14 @@ installation. Let’s load the package
 library("tidyverse")
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
     ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
     ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.4.0
 
-    ## ── Conflicts ────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -390,6 +383,9 @@ surveys_sml
 > Using pipes, subset the surveys data to include animals collected
 > before 1995 and retain only the columns year, sex, and weight.
 
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-1).
+
 #### Mutate
 
 Frequently you’ll want to create new columns based on the values in
@@ -478,6 +474,9 @@ weight is not an NA.
 > values. In this hindfoot\_half column, there are no NAs and all values
 > are less than 30. Hint: think about how the commands should be ordered
 > to produce this data frame\!
+
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-2)
 
 #### Split-apply-combine data analysis and the summarize() function
 
@@ -669,6 +668,9 @@ surveys %>%
 > 3.  What was the heaviest animal measured in each year? Return the
 >     columns year, genus, species\_id, and weight.
 
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-3).
+
 #### Reshaping the data - Tidying up the data
 
 We have to learn the concept of **Data Tidying** in R to better handle
@@ -676,37 +678,11 @@ our data before processing to analysis such as visualizations,
 statistical test, aplying functions, and others. We will use **tidyr**
 for tidying up our data.
 
-**Key to remember: Tidy data format** \<\<\<\<\<\<\< HEAD
+**Key to remember: Tidy data format**
 
-> > 1.  Every column is variable.
-> > 2.  Every row is an observation.
-> > 3.  Every cell is a single value.
-
-Sometimes, we just want to analyze particular element of the data. To
-extract the informations and still make the data tidy, we can reshape
-our data according to the observations of interest which could be in
-**long** format or **wide** format. You may want to read more
-[here](https://tidyr.tidyverse.org/articles/tidy-data.html).
-
-In the previous versions, there are two `tidyr` functions named
-`spread()` and `gather()` to help us reshaping our data. In the [data
-carperntry
-example](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html), you
-can see how we can use that functions. In newer version, there are
-replacement for `spread()` and `gather()`. `spread()` and `gather()`
-will stay there but not in active development. Today, we will use the
-replacement named `pivot_wider` and `pivot_longer`.
-
-**Convert long format to wide format**
-
-*Case*: compare the different mean weight of each genus between plots?
-(Ignoring plot\_type for simplicity).
-
-\=======
-
-> > 1.  Every column is variable.
-> > 2.  Every row is an observation.
-> > 3.  Every cell is a single value.
+1.  Every column is variable.
+2.  Every row is an observation.
+3.  Every cell is a single value.
 
 Sometimes, we just want to analyze particular element of the data. To
 extract the informations and still make the data tidy, we can reshape
@@ -728,10 +704,9 @@ replacement named `pivot_wider` and `pivot_longer`.
 *Case*: compare the different mean weight of each genus between plots?
 (Ignoring plot\_type for simplicity).
 
-> > > > > > > 00801951a2bf581f1a76f3c7307ae88d40679311 *Solution*:
-> > > > > > > extract the table so it will contains the name of `genus`
-> > > > > > > in the columns, rows is the onservations, and cells
-> > > > > > > contains the mean weight for each genus.
+*Solution*: extract the table so it will contains the name of `genus` in
+the columns, rows is the onservations, and cells contains the mean
+weight for each genus.
 
 Let’s use `pivot_wider` to transform surveys to find the mean weight of
 each genus in each plot over the entire survey period. We use
@@ -837,12 +812,12 @@ str(surveys_longer)
 
 **Challenge 4 (20 min)**
 
-> 1.  Spread the surveys data frame with year as columns, plot\_id as
->     rows, and the number of genera per plot as the values. You will
->     need to summarize before reshaping, and use the function
->     n\_distinct() to get the number of unique genera within a
->     particular chunk of data. It’s a powerful function\! See
->     ?n\_distinct for more.
+> 1.  Spread (convert the long format to wide format) the surveys data
+>     frame with year as columns, plot\_id as rows, and the number of
+>     genera per plot as the values. You will need to summarize before
+>     reshaping, and use the function n\_distinct() to get the number of
+>     unique genera within a particular chunk of data. It’s a powerful
+>     function\! See ?n\_distinct for more.
 > 2.  Now take that data frame and gather() it again, so each row is a
 >     unique plot\_id by year combination.
 > 3.  The surveys data set has two measurement columns: hindfoot\_length
@@ -858,6 +833,9 @@ str(surveys_longer)
 >     into a data set with a column for hindfoot\_length and weight.
 >     Hint: You only need to specify the key and value columns for
 >     spread().
+
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20191215_RPyID3rd/R3rdMeeting_answer.md#challenge-4).
 
 You can see another example of tidying up the data in example of
 [pivot\_longer](https://tidyr.tidyverse.org/reference/pivot_longer.html),
