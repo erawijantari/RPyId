@@ -24,6 +24,8 @@ Participants are welcome to upload own project here. How to? (Let's update again
 - Organize your project inside that directory (notes, scripts, raw data are welcome!)
 - Share with others!
 
+The raw live coding by tutor during the meeting also will be deposited here in the `./Share_Practice/Live_coding`.
+
 ## 1stMeeting-Getting started with R and Python
 
 Date: November 9, 2019
@@ -47,22 +49,32 @@ Notes were placed at `./Notes/20191130_RPyID2nd` contains the exercise for creat
 ## 3rdMeeting-Data is beautiful part 1 - Hello Tidyverse!
 Date: December 15, 2019
 
-Time: 10:00 am - 13:00 pm
+Time: 10:00 am - 01:00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
 Notes: `./Notes/20191215_RPyID3rd` contains about introduction of tydiverse and hands on on data wrangling in R.
 
-## 4thMeeting-Data is beautiful part 2 - visualizations with ggplot: R series
+## 4thMeeting-Data is beautiful part 2 - visualizations with ggplot2: R series
+Date: January 12, 2020
+
+Time: 01:00 pm - 04: 00 pm
+
+Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
+
+Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meeting using ggplot)
+
+
+## 5thMeeting-Clasical statistic: univariate and multivariate statistic with R
 Date: **TBA**
 
 Time: **TBA**
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: **TBA** (Visualizations of data from 3rd meeting using ggplot)
+Notes: **TBA** (Basic univariate and multivariate statistic and introductions of library for statistic in R)
 
-## 5thMeeting-Let's make it functional part 1: Python series
+## 6thMeeting-Let's make it functional part 2: Python series
 
 Date: **TBA**
 
@@ -73,7 +85,7 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: **TBA** (Introductions of numpy and data wrangling with pandas, posibly a litle bit visualizations using searborn/matplotlib)
 
 
-## 6thMeeting-Data is beautiful part 3 - visualizations with matplotlib and/or seaborn : Python series
+## 7thMeeting-Data is beautiful part 3 - visualizations with matplotlib and/or seaborn : Python series
 
 Date: **TBA**
 
@@ -83,14 +95,6 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
 Notes: **TBA** (Playing with matplotlib and/or seaborn, we will use kaggle example here)
 
-## 7thMeeting-Clasical statistic: univariate and multivariate statistic with R
-Date: **TBA**
-
-Time: **TBA**
-
-Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
-
-Notes: **TBA** (Basic univariate and multivariate statistic and introductions of library for statistic in R)
 
 ## 8thMeeting-Data explorations with Python
 Date: **TBA**
