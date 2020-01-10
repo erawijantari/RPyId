@@ -99,14 +99,14 @@ the data set that does not include any missing data.
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ────────────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
     ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
     ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.4.0
 
-    ## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -240,6 +240,8 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 >   - `geom_point()` for scatter plots, dot plots, etc.
 >   - `geom_boxplot()` for, boxplots.
 >   - `geom_line()` for trend lines, time series, etc.
+>   - `geom_tile()` or `geom_raster()`\* for heatmaps (although not
+>     really recommended, see explanations below)
 
 To add a geom to the plot use the **+** operator. Because we have two
 continuous variables, let’s use geom\_point()
@@ -344,6 +346,16 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 
 ![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
+Let’s try to color the group based on the sex
+informations.
+
+``` r
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight, fill=sex)) +
+    geom_boxplot()
+```
+
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
 **Challenges 1 (20 min)**
 
 > 1.  To see the shape of distributions, replace the boxplot with a
@@ -374,7 +386,7 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
      geom_line()
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 Oh, no we need to tell ggplot to draw a line for each genus by modifying
 the aesthetic function to include group =
@@ -385,7 +397,7 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 Much better, we will be able to distinguish genera in the plot if we add
 colors (using color also automatically groups the
@@ -396,7 +408,59 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+#### Heatmap
+
+**Heatmap** is a graphical representations of data where the individual
+values contained in a matrix are represented as colors.
+
+Let’s try to represent the genus counts in different `plot_type` during
+the 2002 sampling periode (we will exclude the Spectab exclosure for
+simplicity, because the genus *Sigmodon* were not recorded in that
+particular plot\_type).
+
+``` r
+#prepare the tables needed for visualizations
+dist2002 <- surveys_complete %>% 
+  filter(year == 2002, plot_type != "Spectab exclosure") %>%
+  count(genus, plot_type)
+```
+
+We will use `geom_raster()` to make the heatmaps.
+
+``` r
+#generate the heatmap
+ggplot(data=dist2002, aes(x=plot_type, y=genus))+
+  geom_raster(aes(fill = n))
+```
+
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+For small scale data, this heatmap still quite understandable. However,
+when we are working with bigger data scale, we may want your heatmap to
+cluster nicely, posibly with the dendogram to see their trend of
+clustering.
+
+Unfortunatelly, there is no direct functions to cluster the heatmap
+using ggplot and most of the R user **do not recommend** using ggplot
+for heatmap.
+
+It is possible to create cluster heatmap using the ggplot but it
+involves manual clustering and ordering, before pass the data into
+ggplot. You can see the example of doing so, in the link below.
+
+  - <http://swarchal.github.io/pages/2015/11/25/heatmap-ggplot/>
+
+Moreover, dendogram is quite tricky using ggplot.
+
+For that reason, you can try to use another R packages to create
+heatmaps as explained
+    below.
+
+  - <https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/>
+
+Don’t worry, we will come back to do proper heatmap in the next meeting.
 
 #### Faceting
 
@@ -425,7 +489,7 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
     facet_wrap(facets = vars(genus))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 Now, we would like to split the line in each plot by the sex of each
 individual measured. To do that we need to make counts in the data frame
@@ -443,7 +507,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
   facet_wrap(facets =  vars(genus))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 Now let’s use facet\_grid() to control how panels are organised by both
 rows and columns:
@@ -455,7 +519,7 @@ ggplot(data = yearly_sex_counts,
   facet_grid(rows = vars(sex), cols =  vars(genus))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 You can also organise the panels only by rows (or only by columns):
 
@@ -467,7 +531,7 @@ ggplot(data = yearly_sex_counts,
   facet_grid(rows = vars(genus))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 ``` r
 # One row, facet by column
@@ -477,7 +541,7 @@ ggplot(data = yearly_sex_counts,
   facet_grid(cols = vars(genus))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 #### `ggplot2` themes
 
@@ -494,7 +558,7 @@ function:
      theme_bw()
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 The complete list of ggplot themes is available at
 <https://ggplot2.tidyverse.org/reference/ggtheme.html>. The [ggplot2
@@ -530,7 +594,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     theme_bw()
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 The axes have more informative names, but their readability can be
 improved by increasing the font size. This can be done with the generic
@@ -548,7 +612,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     theme(text=element_text(size = 16))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 After our manipulations, you may notice that the values on the x-axis
 are still not properly readable. Let’s change the orientation of the
@@ -570,7 +634,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
           text = element_text(size = 16))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 If you like the changes you created better than the default theme, you
 can save them as an object to be able to easily apply them to other
@@ -588,7 +652,7 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     grey_theme
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 #### Arranging and explorting plots
 
@@ -627,7 +691,7 @@ spp_count_plot <- ggplot(data = yearly_counts,
 grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
 
 More complex layout are also available
 [here](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html).
@@ -662,7 +726,7 @@ ggsave("fig/yearly_sex_counts.png", my_plot, width = 15, height = 10)
 combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 ```
 
-![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](4th_DataViz_ggplotR_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
 
 ``` r
 ggsave("fig/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)

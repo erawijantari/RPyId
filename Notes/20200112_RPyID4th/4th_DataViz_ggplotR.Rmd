@@ -154,6 +154,7 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 * `geom_point()` for scatter plots, dot plots, etc.
 * `geom_boxplot()` for, boxplots.
 * `geom_line()` for trend lines, time series, etc.
+* `geom_tile()` or `geom_raster()`* for heatmaps (although not really recommended, see explanations below)
 >
 
 To add a geom to the plot use the **+** operator. Because we have two continuous variables, let’s use geom_point() first:
@@ -233,6 +234,13 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     
 ```
 
+Let's try to color the group based on the sex informations. 
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight, fill=sex)) +
+    geom_boxplot()
+```
+
 
 **Challenges 1 (20 min)**
 
@@ -277,6 +285,43 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
 
+
+#### Heatmap
+
+**Heatmap** is a graphical representations of data where the individual values contained in a matrix are represented as colors. 
+
+Let's try to represent the genus counts in different `plot_type` during the 2002 sampling periode (we will exclude the Spectab exclosure for simplicity, because the genus  *Sigmodon* were not recorded in that particular plot_type). 
+
+```{r}
+#prepare the tables needed for visualizations
+dist2002 <- surveys_complete %>% 
+  filter(year == 2002, plot_type != "Spectab exclosure") %>%
+  count(genus, plot_type)
+```
+
+
+We will use `geom_raster()` to make the heatmaps.
+```{r}
+#generate the heatmap
+ggplot(data=dist2002, aes(x=plot_type, y=genus))+
+  geom_raster(aes(fill = n))
+```
+
+For small scale data, this heatmap still quite understandable. However, when we are working with bigger data scale, we may want your heatmap to cluster nicely, posibly with the dendogram to see their trend of clustering. 
+
+Unfortunatelly, there is no direct functions to cluster the heatmap using ggplot and most of the R user **do not recommend** using ggplot for heatmap.
+
+It is possible to create cluster heatmap using the ggplot but it involves manual clustering and ordering, before pass the data into ggplot. You can see the example of doing so, in the link below.
+
+- <http://swarchal.github.io/pages/2015/11/25/heatmap-ggplot/>
+
+Moreover, dendogram is quite tricky using ggplot. 
+
+For that reason, you can try to use another R packages to create heatmaps as explained below. 
+
+- <https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/>
+
+Don't worry, we will come back to do proper heatmap in the next meeting.
 
 #### Faceting
 
