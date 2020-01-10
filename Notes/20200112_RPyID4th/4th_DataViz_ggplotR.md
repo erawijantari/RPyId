@@ -459,6 +459,7 @@ heatmaps as explained
     below.
 
   - <https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/>
+  - <https://jokergoo.github.io/ComplexHeatmap-reference/book/>
 
 Don’t worry, we will come back to do proper heatmap in the next meeting.
 
@@ -736,9 +737,11 @@ ggsave("fig/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 
 ## More exercise
 
-See notebooks here:
-<https://www.kaggle.com/rtatman/getting-started-in-r-load-data-into-r>.
-<https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>
+See notebooks
+    here:
+
+  - <https://www.kaggle.com/rtatman/getting-started-in-r-load-data-into-r>.
+  - <https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html>
 
 ## More datasets, more challenge
 
