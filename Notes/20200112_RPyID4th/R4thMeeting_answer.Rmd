@@ -1,0 +1,64 @@
+---
+title: "Answer for challenge in Data is beautiful part 1 - Hello Tidyverse! : R Seriesr"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Challenge 1
+
+> To see the shape of distributions, replace the boxplot with a violin plot; see `geom_violin()`. 
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+  geom_violin(alpha = 0)
+```
+
+> 2. Sometimes, we need to change the scale for easier observations. Try to represent the weight on the log10 scale; see `scale_y_log10()`. 
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y =weight)) +
+  geom_violin(alpha = 0,  draw_quantiles=0.5) + #draw quantiles to see the median
+  scale_y_log10()
+```
+
+> 3. Create a boxplot for `hindfoot_length` and overlay the boxplot with jitter for actual measurements
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y =hindfoot_length)) +
+  geom_violin(alpha = 0)
+```
+
+> 4. Add color for each data point based on which plot the sample was taken (`plot_id`)
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y =hindfoot_length, color=as.factor(plot_id))) +
+  geom_boxplot(alpha = 0)
+```
+
+Let's put the color as a jitter instead.
+
+```{r}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = hindfoot_length)) +
+  geom_jitter(alpha = 0.1, aes(color = as.factor(plot_id))) +
+  geom_boxplot(alpha = 0)
+```
+
+
+
+## Challenge 2
+
+> Use what you just learned to create a plot that depicts how the average weight of each species changes through the years.
+
+```{r}
+yearly_weight <- surveys_complete %>%
+                group_by(year, species_id) %>%
+                 summarize(avg_weight = mean(weight))
+ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight)) +
+   geom_line() +
+   facet_wrap(vars(species_id)) +
+   theme_bw()
+```
+
