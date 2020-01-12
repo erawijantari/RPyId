@@ -65,14 +65,17 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meeting using ggplot)
 
 
-## 5thMeeting-Clasical statistic: univariate and multivariate statistic with R
+## 5thMeeting-Statistical Fundamental: R series
 Date: **TBA**
 
 Time: **TBA**
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: **TBA** (Basic univariate and multivariate statistic and introductions of library for statistic in R)
+Notes: **TBA** (introductions of library for fundamental statistical inference in R)
+
+**Prerequisite**: basic understanding in statistic because the discussion only focus on the technical part, tutor will give only brief explanations.
+
 
 ## 6thMeeting-Let's make it functional part 2: Python series
 
