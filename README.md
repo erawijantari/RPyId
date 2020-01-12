@@ -62,7 +62,7 @@ Time: 01:00 pm - 04: 00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meeting using ggplot)
+Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meeting using ggplot
 
 
 ## 5thMeeting-Statistical Fundamental: R series
