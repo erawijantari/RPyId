@@ -7,6 +7,19 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Data Preparation
+```{r}
+
+library(tidyverse)
+surveys <- read_csv("data_raw/portal_data_joined.csv")
+
+surveys_complete <- surveys %>%
+  filter(!is.na(weight),           # remove missing weight
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         !is.na(sex))                # remove missing sex
+```
+
+
 ## Challenge 1
 
 > To see the shape of distributions, replace the boxplot with a violin plot; see `geom_violin()`. 
