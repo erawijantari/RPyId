@@ -62,8 +62,10 @@ more functionality compared to the base R ploting.
 **Not typical `ggplot2` ussage**
 
     - 3-dimensional graphics (see the rgl package)
-    - Graph-theory type graphs (nodes/edges layout; see the igraph package)
+    - Graph-theory type graphs (nodes/edges layout; see the igraph package)*
     - Interactive graphics (see the ggvis package)
+    * [**ggraph**](https://www.data-imaginist.com/2017/ggraph-introduction-layouts/) is a ggpot2 extension for network analysis with similar 'grammar' to all tidyverse-compatible package.
+    * another options is [**visNetwork](https://datastorm-open.github.io/visNetwork/).
 
 `ggplot2` are already installed under the **Tidyverse** that we have
 used on the previous meeting. Below is the reminder for installations
@@ -99,14 +101,14 @@ the data set that does not include any missing data.
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
     ## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
     ## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.4.0
 
-    ## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -368,6 +370,9 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight, fill=s
 > 4.  Add color for each data point based on which plot the sample was
 >     taken (`plot_id`)
 
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20200112_RPyID4th/R4thMeeting_answer.md#challenge-1).
+
 #### Plotting time series data
 
 Let’s calculate number of counts per year for each genus. First we need
@@ -572,6 +577,9 @@ themes.
 > Use what you just learned to create a plot that depicts how the
 > average weight of each species changes through the years.
 
+See the answer
+[**here**](https://github.com/erawijantari/RPyId/blob/master/Notes/20200112_RPyID4th/R4thMeeting_answer.md#challenge-2).
+
 #### Customization
 
 We can improve the plot by numerous customizations listed in the
@@ -701,9 +709,10 @@ format. The Export tab in the Plot pane in RStudio will save your plots
 at low resolution, which will not be accepted by many journals and will
 not scale well for posters.
 
-Instead, use the ggsave() function, which allows you easily change the
-dimension and resolution of your plot by adjusting the appropriate
-arguments (width, height and dpi).
+Instead, use the `ggsave()`\* function, which allows you easily change
+the dimension and resolution of your plot by adjusting the appropriate
+arguments (width, height and dpi). \*if the plot is not defined, the
+`ggsave()` will plot the last generated plot.
 
 Make sure you have the fig/ folder in your working directory.
 
@@ -734,6 +743,15 @@ ggsave("fig/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
 
     ## Saving 10 x 5 in image
+
+Another methods to arrange the plot in R:
+
+  - **cowplot**: in
+    [**CRAN**](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html);
+    [**github**](https://github.com/wilkelab/cowplot)
+  - **patchwork** : in
+    [**CRAN**](https://cran.r-project.org/web/packages/patchwork/index.html);
+    [**github**](https://github.com/thomasp85/patchwork)
 
 ## More exercise
 
