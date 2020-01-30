@@ -66,15 +66,13 @@ Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meet
 
 
 ## 5thMeeting-Statistical Fundamental: R series
-Date: **TBA**
+Date: February 01, 2020
 
-Time: **TBA**
+Time: 02:00 pm - 05: 00 pm
 
 Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 
-Notes: **TBA** (introductions of library for fundamental statistical inference in R)
-
-**Prerequisite**: basic understanding in statistic because the discussion only focus on the technical part, tutor will give only brief explanations.
+Notes: `./Notes/20200201_RPyID5th` (introductions of library for fundamental statistical inference in R)
 
 
 ## 6thMeeting-Let's make it functional part 2: Python series
