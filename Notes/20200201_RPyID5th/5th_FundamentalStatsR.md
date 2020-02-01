@@ -138,7 +138,7 @@ using t-test.
 > and mu is the value (mean) described by null hypothesis
 
 *problem example*: Does the volume of a shipment of lumber was less than
-usual (mu=37000 cubic feet)
+usual (mu=39000 cubic feet)
 
 *solutions*:
 

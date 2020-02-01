@@ -90,7 +90,7 @@ Remember that sample is a subset of populations? Sometimes, we need to check or 
 > **In R**
 syntax: t.test(y,mu=o); which y is the variable of interest and mu is the value (mean) described by null hypothesis
 
-*problem example*: Does the volume of a shipment of lumber was less than usual (mu=37000 cubic feet)
+*problem example*: Does the volume of a shipment of lumber was less than usual (mu=39000 cubic feet)
 
 *solutions*:
 ```{r}
