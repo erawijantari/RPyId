@@ -26,14 +26,24 @@ More complex case may need different ways/steps to solve. Please try the
         (Gene Expression Omnibus) data:
         <ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS3nnn/GDS3309/soft/GDS3309.soft.gz>
 
-References: - <https://psyr.org/probability.html> -
-<http://www.biostathandbook.com/hypothesistesting.html> -
-<http://pluto.huji.ac.il/~msby/StatThink/IntroStat.pdf> (Yakir B, 2011)
-- <https://learningstatisticswithr.com/lsr-0.6.pdf> -
-<http://pop-gen.eu/wordpress/statistics-in-bioinformatics-using-r> -
-<https://data-flair.training/blogs/t-tests-in-r/> -
-<https://www.datanovia.com/en/courses/comparing-multiple-means-in-r/> -
-<https://rstudio-pubs-static.s3.amazonaws.com/169842_aa602fb45bd64d3fb6c0fa36e49e285a.html>
+References:
+
+  - <https://psyr.org/probability.html>
+
+  - <http://www.biostathandbook.com/hypothesistesting.html>
+
+  - <http://pluto.huji.ac.il/~msby/StatThink/IntroStat.pdf> (Yakir B,
+    2011)
+
+  - <https://learningstatisticswithr.com/lsr-0.6.pdf>
+
+  - <http://pop-gen.eu/wordpress/statistics-in-bioinformatics-using-r>
+
+  - <https://data-flair.training/blogs/t-tests-in-r/>
+
+  - <https://www.datanovia.com/en/courses/comparing-multiple-means-in-r/>
+
+  - <https://rstudio-pubs-static.s3.amazonaws.com/169842_aa602fb45bd64d3fb6c0fa36e49e285a.html>
 
 ### Key Terms on Statistics
 
