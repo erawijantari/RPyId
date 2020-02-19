@@ -56,6 +56,7 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: `./Notes/20191215_RPyID3rd` contains about introduction of tydiverse and hands on on data wrangling in R.
 
 ## 4thMeeting-Data is beautiful part 2 - visualizations with ggplot2: R series
+
 Date: January 12, 2020
 
 Time: 01:00 pm - 04: 00 pm
@@ -66,6 +67,7 @@ Notes: `./Notes/20200112_RPyID4th` contains visualizations of data from 3rd meet
 
 
 ## 5thMeeting-Statistical Fundamental: R series
+
 Date: February 01, 2020
 
 Time: 02:00 pm - 05: 00 pm
@@ -75,7 +77,21 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: `./Notes/20200201_RPyID5th` (introductions of library for fundamental statistical inference in R)
 
 
-## 6thMeeting-Let's make it functional part 2: Python series
+## 6thMeeting-"Semi" Hackathon Session
+
+This is the first trial of hackathon, thus we will call "Semi" Hackathon. Please read on notes about the hackathon format.
+
+Date: February 24, 2020
+
+Time: 11:00 - 18: 00
+
+Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
+
+Notes: `./Notes/20200224_RPyID6th`
+
+
+
+## 7thMeeting-Let's make it functional part 2: Python series
 
 Date: **TBA**
 
@@ -86,7 +102,7 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: **TBA** (Introductions of numpy and data wrangling with pandas, posibly a litle bit visualizations using searborn/matplotlib)
 
 
-## 7thMeeting-Data is beautiful part 3 - visualizations with matplotlib and/or seaborn : Python series
+## 8thMeeting-Data is beautiful part 3 - visualizations with matplotlib and/or seaborn : Python series
 
 Date: **TBA**
 
@@ -97,7 +113,8 @@ Venue: Midorigaoka 6 1st Floor, Tokyo Institute of Technology
 Notes: **TBA** (Playing with matplotlib and/or seaborn, we will use kaggle example here)
 
 
-## 8thMeeting-Data explorations with Python
+## 9thMeeting-Data explorations with Python
+
 Date: **TBA**
 
 Time: **TBA**
