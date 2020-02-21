@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 6thMeeting-SemiHackathon Session
+=======
+5thMeeting- Basic Statistical Inference with R : R series
+>>>>>>> 0f87a7ad5b12e888a9590a7c9d137c53f4a884f5
 ================
 
 **6thMeeting - Monday, February 24, 2020**
@@ -28,12 +32,20 @@ website](https://worldhappiness.report/).
 Below is the list of examples on how to explore the data, for your
 inspiration.
 
+<<<<<<< HEAD
   - From kaggle: [Kaggle
     Kernels](https://www.kaggle.com/unsdsn/world-happiness/kernels)
 
   - From Rpubs: [Elissa, et
     al 2018](https://rpubs.com/koki25ando/DATA1001TeamBver1) and [Prakki
     Rama, 2019](https://rpubs.com/Prakki_Rama/whd)
+=======
+From kaggle: [Kaggle
+Kernels](https://www.kaggle.com/unsdsn/world-happiness/kernels) From
+Rpubs: [Elissa, et
+al 2018](https://rpubs.com/koki25ando/DATA1001TeamBver1) and [Prakki
+Rama, 2019](https://rpubs.com/Prakki_Rama/whd)
+>>>>>>> 0f87a7ad5b12e888a9590a7c9d137c53f4a884f5
 
 Example of problem set for data exploration:
 
@@ -57,9 +69,16 @@ Exploring about Indonesia’s ranks or scores change between the 2015 and
 compare Indonesian’s conditions with other country(ies) of interest.
 
 What about some other comprehensive picture? If you familiar with the
+<<<<<<< HEAD
 [Factfulness book](https://www.gapminder.org/factfulness-book/), you may
 now about the [Gapminder datasets](https://www.gapminder.org/data/) with
 its famous buble scatterplot. Some interesting analysis can be found
+=======
+[Factfulness book](https://www.gapminder.org/factfulness-book/) book,
+you may now about the [Gapminder
+datasets](https://www.gapminder.org/data/) with its famous buble
+scatterplot. Some interesting analysis can be found
+>>>>>>> 0f87a7ad5b12e888a9590a7c9d137c53f4a884f5
 [here](https://www.gapminder.org/tools/).
 
 Below are some inspirations on where we can go from gapminder
@@ -108,11 +127,19 @@ How’s the coding going? Have you reach 50% of your target? What’s
 interesting thing you have learn or find? Do you have hard time in this
 practice?
 
+<<<<<<< HEAD
 **15.00-15.30 Break**
 
 Prayer time and probably you need coffee at this point (or short nap?)
 
 **15.30-17.00 Hack Hack\!**
+=======
+**15.00-15.30 Break **
+
+Prayer time and probably you need coffee at this point (or short nap?)
+
+**15.30-17.00 Hack Hack\! **
+>>>>>>> 0f87a7ad5b12e888a9590a7c9d137c53f4a884f5
 
 Continue\! Remember the roles: If you can’t move on within 10 minutes
 with your code, it’s time to ask for help.
