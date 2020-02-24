@@ -101,7 +101,72 @@ Please share your notes on our github or other platform. Or someone probably wan
 
 ## Notes of the activity
 
-......(will be updated during the day)
+### Checkpoint 1
+
+#### Jordy
+
+Focus on year (2019):
+Plot with bokeh--> with hover info for interactive plot. In R you can use `Plotly` or ..
+From the data we can see the distribution of each factor for each country, region, subregion. 
+
+See the notes here...
+
+#### Al
+
+Presentation about Anime recomendation.
+For the recommender system based on rate of each anime. 
+The analysis consists of:
+1. Data filtering based on rates
+2. Co-occurence metric for each anime
+
+Final output will be how close each anime with others, and knowing the pattern of watching.
+See the notes here..
+
+
+#### Era
+
+Temporal analysis for Indonesia and how it compared to the southeast asia
+
+
+#### Lutfhan
+
+Focus on year 2019
+Learning the ggplot
+1. regression of each factor to happiness score
+2. correlations of each
+
+See notes here..
+
+#### Felix
+
+Data wrangling adding region into the dataframe.
+Visualization of each factor into the violin plot
+Vizualisations of correlations between score and each score for each regiomn
+See notes here...
+
+
+### Checkpoint 2
+
+#### Luthfan and Felix
+
+Package "highcharter" for vizualizations of happiness score in worldmap.
+Combine all tables in different timeline.
+
+#### Jordhy
+
+Map world happiness
+Dataframe in geopandas, read by geo.json and plotted in bokeh. 
+
+
+#### Era
+
+Cleaning dataset. 
+
+#### Fajar
+
+Analysis per continent.
+
+#### Mia
 
 
 
