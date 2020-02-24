@@ -1,0 +1,142 @@
+---
+title: "Happiness20152019_Luthfan.Rmd"
+output: html_document
+---
+
+tidyverse for data wrangling, gridExtra for arranging multiple plots, ggplot for plotting.
+
+```{r}
+library("tidyverse")
+library("gridExtra")
+library("ggplot2")
+library("plotly")
+```
+
+---
+Hackathon
+Monday, February 24 2019
+
+Dataset: World Happiness Report Datasets (2015-2019)
+---
+
+Grab data for each year. Most of the data processing here should be done with for-loop and list, but wasn't
+completely sure on how to do it properly. So each year's dataset is processed one by one separately.
+
+```{r}
+df_2015 <- read.csv("/Users/lubis/Documents/study/dataanalysis/hackathon/world-happiness/2015.csv", header=TRUE)
+df_2016 <- read.csv("/Users/lubis/Documents/study/dataanalysis/hackathon/world-happiness/2016.csv", header=TRUE)
+df_2017 <- read.csv("/Users/lubis/Documents/study/dataanalysis/hackathon/world-happiness/2017.csv", header=TRUE)
+df_2018 <- read.csv("/Users/lubis/Documents/study/dataanalysis/hackathon/world-happiness/2018.csv", header=TRUE)
+df_2019 <- read.csv("/Users/lubis/Documents/study/dataanalysis/hackathon/world-happiness/2019.csv", header=TRUE)
+```
+
+Check types of each year to work only on the common ones.
+
+```{r}
+str(df_2015)
+str(df_2016)
+str(df_2017)
+str(df_2018)
+str(df_2019)
+```
+
+Since the feature names change in some of the years, we specific on which features to work, and renaming the features
+correspondingly.
+1. Country.or.region renamed into Country
+2. Happiness.Rank renamed into Overall.rank
+3. Happiness.Score renamed into Score
+4. Economy..GDP.per.Capita. renamed into GDP.per.capita
+5. Health..Life.Expectancy. renamed itno Healthy.life.expectancy
+6. Freedom renamed into Freedom.to.make.life.choices
+7. Trust..Government.Corruption renamed into Perceptions.of.corruption
+
+For 2015, aside form renaming some features, 3 features (Standard.Error, Family, Dystopia.Residual) are removed.
+
+```{r}
+df_2015_rename <- df_2015 %>%
+  rename(Overall.rank = Happiness.Rank, Score = Happiness.Score, GDP.per.capita = Economy..GDP.per.Capita.,
+         Healthy.life.expectancy = Health..Life.Expectancy., Perceptions.of.corruption = Trust..Government.Corruption.) %>%
+  select(-c(Standard.Error, Family, Dystopia.Residual))
+str(df_2015_rename)
+```
+
+2016 is treated the same way as 2015.
+
+```{r}
+df_2016_rename <- df_2016 %>%
+  rename(Overall.rank = Happiness.Rank, Score = Happiness.Score, GDP.per.capita = Economy..GDP.per.Capita.,
+         Healthy.life.expectancy = Health..Life.Expectancy., Perceptions.of.corruption = Trust..Government.Corruption.) %>%
+  select(-c(Lower.Confidence.Interval, Upper.Confidence.Interval, Family, Dystopia.Residual))
+str(df_2016_rename)
+```
+
+For 2017, 4 features (Whisker.high, Whisker.low, Family, Dystopia.Residual) are removed.
+
+```{r}
+df_2017_rename <- df_2017 %>%
+  rename(Overall.rank = Happiness.Rank, Score = Happiness.Score, GDP.per.capita = Economy..GDP.per.Capita.,
+         Healthy.life.expectancy = Health..Life.Expectancy., Perceptions.of.corruption = Trust..Government.Corruption.) %>%
+  select(-c(Whisker.high, Whisker.low, Family, Dystopia.Residual))
+str(df_2017_rename)
+```
+
+2018 and 2019 go through similar process. Some features are renamed, and 1 feature (Social.support) is removed
+from the DataFrame.
+
+```{r}
+df_2018_rename <- df_2018 %>%
+  rename(Country = Country.or.region, Freedom = Freedom.to.make.life.choices) %>%
+  select(-c(Social.support))
+df_2019_rename <- df_2019 %>%
+    rename(Country = Country.or.region, Freedom = Freedom.to.make.life.choices) %>%
+    select(-c(Social.support))
+str(df_2018_rename)
+str(df_2019_rename)
+```
+
+All of these renamed DataFrames are put in new variables with "_rename" attached to their name.
+
+------
+TAKE REGION AND PLUG TO THE REMAINING YEARS
+
+The feature Region which denotes the region of each country (North America, Western Europe, etc.) is missing from 2017.
+So this needs to be added to the later datasets (2017, 2018, 2019)
+------
+
+```{r}
+plug_region <- df_2015 %>% select(Country, Region)
+df_2017_rename <- left_join(df_2017_rename, plug_region)
+df_2018_rename <- left_join(df_2018_rename, plug_region)
+df_2019_rename <- left_join(df_2019_rename, plug_region)
+```
+
+Add new feature year for each dataset.
+
+```{r}
+df_2015_rename$year <- 2015
+df_2016_rename$year <- 2016
+df_2017_rename$year <- 2017
+df_2018_rename$year <- 2018
+df_2019_rename$year <- 2019
+```
+
+
+Bind rows is just stacking everything by rows, distinguished by year.
+
+```{r}
+df <- bind_rows(df_2015_rename, df_2016_rename, df_2017_rename, df_2019_rename)
+```
+
+Then plot using plotly.
+
+```{r}
+p <- ggplot(df, aes(Healthy.life.expectancy, Score, color = Region)) +
+  geom_point(alpha=0.5, aes(size = GDP.per.capita, frame = year, ids = Country)) +
+  scale_x_log10() + xlim(0.05, 1.00)
+
+p <- ggplotly(p)
+
+p
+```
+
+
